@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +78,9 @@ body {
     transform: translateY(-12px) scale(1.04);
     box-shadow: 0 15px 35px rgba(0,0,0,.25);
   }
-  .small-envelope:not(.flap):hover { transform: scale(.53) translateY(-12px); }
+  .small-envelope:not(.flap):hover {
+    transform: scale(.53) translateY(-12px);
+  }
 }
 .envelope-wrapper.flap {
   z-index: 9999 !important;
@@ -86,15 +89,20 @@ body {
 }
 
 /* ENVELOPE SHAPE */
-.envelope-wrapper .envelope { position: relative; width: 300px; height: 230px; }
+.envelope-wrapper .envelope {
+  position: relative; width: 300px; height: 230px;
+}
 .envelope-wrapper > .envelope::before {
   content: ""; position: absolute; top: 0; z-index: 2;
   border-top: 130px solid var(--envelope-tab);
-  border-right: 150px solid transparent; border-left: 150px solid transparent;
-  transform-origin: top; transition: .5s ease-in-out .7s;
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: .5s ease-in-out .7s;
 }
 .envelope-wrapper .envelope::after {
-  content: ""; position: absolute; z-index: 2; width: 0; height: 0;
+  content: ""; position: absolute; z-index: 2;
+  width: 0; height: 0;
   border-top: 130px solid transparent;
   border-right: 150px solid var(--envelope-cover);
   border-bottom: 100px solid var(--envelope-cover);
@@ -105,24 +113,34 @@ body {
 .envelope > .letter {
   position: absolute; right: 18%; bottom: 0;
   width: 58%; height: 82%;
-  background: var(--primary); box-shadow: 0 0 8px var(--shadow-color);
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--shadow-color);
   text-align: center; padding: 20px 14px;
   transition: 1s ease-in-out; overflow: hidden;
   display: flex; flex-direction: column;
 }
 .letter .text {
-  font-family: Arial, Helvetica, sans-serif; color: var(--txt-color);
-  text-align: left; font-size: 8.5px; line-height: 1.5; font-weight: 700;
-  flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--txt-color);
+  text-align: left; font-size: 8.5px;
+  line-height: 1.5; font-weight: 700;
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   touch-action: pan-y; padding-right: 6px;
 }
 .letter .text::-webkit-scrollbar { width: 2.5px; }
-.letter .text::-webkit-scrollbar-thumb { background: var(--scrolling-color); border-radius: 3px; }
-.letter strong { display: block; font-size: 17px; font-weight: 900; margin-bottom: 10px; }
+.letter .text::-webkit-scrollbar-thumb {
+  background: var(--scrolling-color); border-radius: 3px;
+}
+.letter strong {
+  display: block; font-size: 17px;
+  font-weight: 900; margin-bottom: 10px;
+}
 .letter p { font-weight: 700; margin-bottom: 8px; }
 
-/* BUTTON CENTERED BELOW THE ENVELOPE; HIDDEN UNTIL OPENED */
+/* BUTTON */
 .main-envelope > .btn {
   position: absolute;
   top: calc(100% + 18px);
@@ -158,9 +176,11 @@ body {
   z-index: 10003;
   cursor: pointer;
 }
-.main-envelope > .btn a:hover { background: rgb(202, 92, 129); }
+.main-envelope > .btn a:hover {
+  background: rgb(202, 92, 129);
+}
 
-/* PICTURES FILL LETTER AREA */
+/* PICTURES */
 .letter.picture-letter { padding: 0; }
 .letter.picture-letter .picture {
   display: block; width: 100%; height: 100%; min-height: 0;
@@ -178,59 +198,101 @@ body {
 .letter .text > *:nth-child(4) { transition-delay: .50s; }
 .letter .text > *:nth-child(5) { transition-delay: .65s; }
 .letter .text > *:nth-child(6) { transition-delay: .80s; }
-.show-text .letter .text > * { opacity: 1; transform: translateY(0); }
-.envelope-wrapper.closing .letter .text > * { transition-delay: 0s !important; }
+.show-text .letter .text > * {
+  opacity: 1; transform: translateY(0);
+}
+.envelope-wrapper.closing .letter .text > * {
+  transition-delay: 0s !important;
+}
 
 /* HEART BUTTON */
 .heart {
-  position: absolute; top: 50%; left: 50%; width: 15px; height: 15px;
-  background: var(--heart-color); transform: translate(-50%, -20%) rotate(-45deg);
-  box-shadow: 0 2px 8px var(--shadow-color); cursor: pointer; z-index: 4;
+  position: absolute; top: 50%; left: 50%;
+  width: 15px; height: 15px;
+  background: var(--heart-color);
+  transform: translate(-50%, -20%) rotate(-45deg);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  cursor: pointer; z-index: 4;
   transition: transform .5s ease-in-out 1s;
 }
 .heart::before, .heart::after {
-  content: ""; position: absolute; width: 15px; height: 15px;
-  background: var(--heart-color); border-radius: 50%;
+  content: ""; position: absolute;
+  width: 15px; height: 15px;
+  background: var(--heart-color);
+  border-radius: 50%;
 }
 .heart::before { top: -7.5px; }
 .heart::after { right: -7.5px; }
-.envelope-wrapper:not(.flap) .heart { animation: pulse 1.6s ease-in-out infinite; }
+.envelope-wrapper:not(.flap) .heart {
+  animation: pulse 1.6s ease-in-out infinite;
+}
 @keyframes pulse {
-  0%, 100% { transform: translate(-50%, -20%) rotate(-45deg) scale(1); }
-  50% { transform: translate(-50%, -20%) rotate(-45deg) scale(1.15); }
+  0%, 100% {
+    transform: translate(-50%, -20%) rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -20%) rotate(-45deg) scale(1.15);
+  }
 }
 
 /* HINT */
 .hint {
-  position: absolute; bottom: -34px; left: 50%; transform: translateX(-50%);
-  color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .03em;
-  text-shadow: 0 1px 3px rgba(0,0,0,.25); white-space: nowrap;
+  position: absolute; bottom: -34px; left: 50%;
+  transform: translateX(-50%);
+  color: #fff; font-size: 12px; font-weight: 700;
+  letter-spacing: .03em;
+  text-shadow: 0 1px 3px rgba(0,0,0,.25);
+  white-space: nowrap;
   transition: opacity .4s ease;
 }
 .envelope-wrapper.flap .hint { opacity: 0; }
 
 /* OPEN / CLOSE */
-.flap .envelope::before { transform: rotateX(180deg); z-index: 0; }
-.flap .envelope .letter { bottom: 160px; transform: scale(1); transition-delay: 1s; }
-.flap .heart { transform: translate(-50%, -20%) rotate(45deg); transition-delay: .4s; animation: none; }
-.closing .envelope::before { transform: rotateX(0deg); z-index: 2; transition-delay: .6s; }
-.closing .envelope .letter { bottom: 0; transform: scale(1); transition-delay: 0s; }
-.closing .heart { transform: translate(-50%, -20%) rotate(-45deg); transition-delay: 0s; }
+.flap .envelope::before {
+  transform: rotateX(180deg); z-index: 0;
+}
+.flap .envelope .letter {
+  bottom: 160px; transform: scale(1);
+  transition-delay: 1s;
+}
+.flap .heart {
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition-delay: .4s; animation: none;
+}
+.closing .envelope::before {
+  transform: rotateX(0deg); z-index: 2;
+  transition-delay: .6s;
+}
+.closing .envelope .letter {
+  bottom: 0; transform: scale(1);
+  transition-delay: 0s;
+}
+.closing .heart {
+  transform: translate(-50%, -20%) rotate(-45deg);
+  transition-delay: 0s;
+}
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .main-envelope:not(.flap) { transform: scale(.82); }
   .small-envelope:not(.flap) { transform: scale(.36); }
-  .small-envelope.pos1 { top: 18%; left: 0; }
-  .small-envelope.pos2 { top: 18%; right: 0; }
-  .small-envelope.pos3 { bottom: 18%; left: 0; }
-  .small-envelope.pos4 { bottom: 18%; right: 0; }
+
+  /* MOBILE: SPREAD SMALL ENVELOPES HORIZONTALLY */
+  .small-envelope.pos1 { top: 15%; left: -18%; }
+  .small-envelope.pos2 { top: 15%; right: -18%; }
+  .small-envelope.pos3 { bottom: 15%; left: -18%; }
+  .small-envelope.pos4 { bottom: 15%; right: -18%; }
+
   .main-envelope.flap { transform: scale(.82); }
   .small-envelope.flap { transform: scale(.36); }
 }
+
 @media (max-width: 360px) {
-  .main-envelope:not(.flap), .main-envelope.flap { transform: scale(.72); }
-  .small-envelope:not(.flap), .small-envelope.flap { transform: scale(.29); }
+  .main-envelope:not(.flap),
+  .main-envelope.flap { transform: scale(.72); }
+
+  .small-envelope:not(.flap),
+  .small-envelope.flap { transform: scale(.29); }
 }
 </style>
 </head>
@@ -240,24 +302,26 @@ body {
 <div class="container">
   <div class="envelope-scene">
 
-    <!-- MAIN ENVELOPE: TEXT AND NAVIGATION BUTTON -->
+    <!-- MAIN ENVELOPE -->
     <div class="envelope-wrapper main-envelope">
       <div class="envelope">
         <div class="letter">
           <div class="text">
-            <strong>Happy Birthday :),</strong>
+            <strong>KEEP SHANING Maam Shane ⭐!!),</strong>
             <p></p>
-            <p>KEEP SHANING Maam Shane ⭐!!</p>
             <p>
-              Keep on Shining! Live Longlasting Life<br>
-              Happy Life and Healthy Life
+              Happy Birthday, Ma'am Shane!💖
+
+              May your life be filled with happiness, good health, love, and countless blessings.
+              May you continue to inspire others with your kindness and bring smiles to everyone around you.
+              Wishing you more success, beautiful memories, and wonderful years ahead! 🥳
             </p>
+            <p>(Open da cake below) :)</p>
           </div>
         </div>
         <div class="heart"></div>
       </div>
 
-      <!-- Button appears below the envelope only after it opens -->
       <div class="btn">
         <a href="./index.html" target="_self" id="yesButton">Birthday Cake 🎂</a>
       </div>
@@ -326,11 +390,7 @@ for (let i = 0; i < HEART_COUNT; i++) {
   bgHearts.appendChild(h);
 }
 
-/*
-  The button is a normal link to yes.html.
-  This handler only prevents the click from bubbling to any envelope
-  click behavior; it does not prevent navigation.
-*/
+/* BIRTHDAY BUTTON */
 const yesButton = document.getElementById('yesButton');
 yesButton.addEventListener('click', function(event) {
   event.stopPropagation();
@@ -378,6 +438,7 @@ envelopes.forEach((wrapper) => {
   heartBtn.addEventListener('click', (event) => {
     event.stopPropagation();
     if (animating) return;
+
     animating = true;
 
     if (!opened) {
